@@ -1,4 +1,4 @@
-import { isEmpty, isObject, properObject } from '../utils';
+import { isEmpty, isObject, properObject } from '../utils/index.js';
 
 const deletedDiff = (lhs, rhs) => {
   if (lhs === rhs || !isObject(lhs) || !isObject(rhs)) return {};

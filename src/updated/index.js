@@ -1,4 +1,4 @@
-import { isDate, isEmpty, isObject, properObject } from '../utils';
+import { isDate, isEmpty, isObject, properObject } from '../utils/index.js';
 
 const updatedDiff = (lhs, rhs) => {
 
