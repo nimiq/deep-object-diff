@@ -16,20 +16,20 @@ const diff = (lhs, rhs) => {
         continue;
       }
 
-      const valueDiff = diff(lhs.get(key), value);
-      if (Object.keys(valueDiff).length) {
-        diffMap.set(key, valueDiff);
+      const difference = diff(lhs.get(key), value);
+      if (!isObject(difference) || !isEmpty(difference) || isDate(difference) || isMap(difference)) {
+        diffMap.set(key, difference);
       }
     }
 
     // Find deleted keys
-    for (const [key, value] of lhs) {
-      if(!rhs.has(key)) {
+    for (const key of lhs.keys()) {
+      if (!rhs.has(key)) {
         diffMap.set(key, undefined);
       }
     }
 
-    return diffMap.size > 0 ? diffMap : {};
+    return diffMap.size ? diffMap : {};
   }
   else if (isMap(lhs)) return rhs;
 
