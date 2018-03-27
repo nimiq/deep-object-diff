@@ -13,8 +13,7 @@ const preserve = (diff, left, right) => {
 
     if (Array.isArray(leftArray) && Array.isArray(rightArray)) {
       const array = [...getLargerArray(leftArray, rightArray)];
-      return {
-        ...acc,
+      return Object.assign({}, acc, {
         [key]: array.reduce((acc2, item, index) => {
           if (diff[key].hasOwnProperty(index)) {
             acc2[index] = preserve(diff[key][index], leftArray[index], rightArray[index]); // diff recurse and check for nested arrays
@@ -24,7 +23,7 @@ const preserve = (diff, left, right) => {
           delete acc2[index]; // no diff aka empty
           return acc2;
         }, array)
-      };
+      });
     }
 
     return {
